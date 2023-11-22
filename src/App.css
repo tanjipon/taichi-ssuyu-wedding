@@ -1,0 +1,9 @@
+@font-face {
+    font-family: chenyuluoyan-mono;
+    src: url(./assets/fonts/chenyuluoyan-thin-monospace.ttf);
+}
+
+.high-opacity-100 {
+    opacity: 1 !important;
+}
+
