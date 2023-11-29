@@ -39,7 +39,7 @@ function App() {
   const audioPlayer = useRef<HTMLAudioElement>(null); 
 
   const [currPage, setCurrPage] = useState(0);
-  function getWelcomLetter(currentPage: number){
+  function getWelcomLetter(){
     // if (currentPage === 1){
     return (
       <TypeAnimation
@@ -97,7 +97,7 @@ function App() {
   //   }
   // }, []);
 
-  const handleScroll = (e: React.UIEvent) => {
+  const handleScroll = () => {
     const pageHeight: number = parallax.current.space;
     const currentOffset: number = parallax.current.current / pageHeight;
     const currentPage: number = Math.trunc(currentOffset);
@@ -253,7 +253,7 @@ function App() {
         <ParallaxLayer className='flex justify-center items-center' offset={1} speed={0}>
           <div className='w-11/12 lg:w-6/12 md:w-10/12 sm:w-10/12 h-4/6 bg-no-repeat bg-center bg-contain' style={{ backgroundImage: `url(${letterBgImg})` }}>
             <div className='p-4 shadow-lg rounded-md w-full h-full' style={{ backgroundColor: 'rgba(255,255,255,0.8)' }}>
-              { getWelcomLetter(currPage) }
+              { getWelcomLetter() }
             </div>
           </div>
         </ParallaxLayer>
