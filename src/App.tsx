@@ -95,27 +95,15 @@ function App() {
     return () => {
       container.removeEventListener('scroll', handleScroll)
     }
-  }, [lastOffset]);
+  }, []);
 
   window.addEventListener('click', () => {
     audioPlayer.current?.play();
-    // if(audioPlayer.current){
-    //   audioPlayer.current.muted = false;
-    // }
   });
 
   window.addEventListener('touchstart', () => {
     audioPlayer.current?.play();
-    // if(audioPlayer.current){
-    //   audioPlayer.current.muted = false;
-    // }
   });
-
-  useEffect(() => {
-    if(audioPlayer.current){
-      audioPlayer.current.muted = false;
-    }
-  }, []);
 
   const [p1Springs] = useSpring(
     () => ({
@@ -229,10 +217,10 @@ function App() {
           </div>
         </ParallaxLayer>
         <ParallaxLayer className='relative w-full' sticky={{ start: 1, end: 5 }} speed={0}>
-            <div className='absolute w-7/12 lg:w-2/12 md:w-4/12 sm:w-4/12 flex justify-center items-center animate-wiggle-more animate-infinite animate-duration-[2500ms] animate-delay-500 animate-ease-in' style={{ bottom: '4px', left: '-40px' }}>
+            <div className='absolute w-5/12 lg:w-2/12 md:w-4/12 sm:w-4/12 flex justify-center items-center animate-wiggle-more animate-infinite animate-duration-[2500ms] animate-delay-500 animate-ease-in' style={{ bottom: '4px', left: '-40px' }}>
               <img className='w-full' src={qSsuyu} />
             </div>
-            <div className='absolute w-7/12 lg:w-2/12 md:w-4/12 sm:w-4/12 flex justify-center items-center animate-wiggle-more animate-infinite animate-duration-[2500ms] animate-ease-in' style={{ top: '4px', right: '-40px' }}>
+            <div className='absolute w-5/12 lg:w-2/12 md:w-4/12 sm:w-4/12 flex justify-center items-center animate-wiggle-more animate-infinite animate-duration-[2500ms] animate-ease-in' style={{ top: '4px', right: '-40px' }}>
               <img className='w-full' src={qTaichi} />
             </div>
         </ParallaxLayer>
@@ -246,7 +234,7 @@ function App() {
         <ParallaxLayer className='relative' offset={2} speed={0}>
           <div className='absolute flex flex-row justify-center items-center w-full left-1/20 lg:-left-1/4 md:-left-1/4 sm:-left-1/4' style={{ top: '18%' }}>
             <div 
-              className='bg-white p-1 rounded w-5/12 lg:w-2/12 md:w-3/12 sm:w-3/12 shadow-xl'
+              className='bg-white p-1 rounded w-4/12 lg:w-2/12 md:w-3/12 sm:w-3/12 shadow-xl'
               style={{ transform: 'rotate(-3deg)' }} 
             >
               <img className='w-full' src={ssuyuSingle} />
@@ -264,7 +252,7 @@ function App() {
               <div>彭文良 賴儀娟</div>
             </div>
             <div 
-              className='bg-white p-1 rounded w-5/12 lg:w-2/12 md:w-3/12 sm:w-3/12 shadow-xl' 
+              className='bg-white p-1 rounded w-4/12 lg:w-2/12 md:w-3/12 sm:w-3/12 shadow-xl' 
               style={{ transform: 'rotate(5deg)' }}
             >
               <img className='w-full' src={taichiSingle} />
