@@ -2,28 +2,29 @@ import { useEffect, useRef, useState } from 'react';
 import { Parallax, ParallaxLayer, IParallax } from '@react-spring/parallax';
 import './App.css'
 
-import bgImg from './assets/cover-bg.jpg';
-import photo1 from './assets/photo-1.png';
-import photo2 from './assets/photo-2.png';
-import photo3 from './assets/photo-3.png';
+import bgm from './assets/bgm.mp3';
+import bgImg from './assets/cover-bg.webp';
+import photo1 from './assets/photo-1.webp';
+import photo2 from './assets/photo-2.webp';
+import photo3 from './assets/photo-3.webp';
 
-import taichiSingle from './assets/taichi-single.png';
-import ssuyuSingle from './assets/ssuyu-single.png';
+import taichiSingle from './assets/taichi-single.webp';
+import ssuyuSingle from './assets/ssuyu-single.webp';
 
-import thankYouPhoto from './assets/thank_you-photo.png';
+import thankYouPhoto from './assets/thank_you-photo.webp';
 
-import coverTaichiAndSsuYuText from './assets/cover-page_taichi-and-ssuyu_white.png';
-import coverWeddingText from './assets/cover-page_wedding_white.png';
-import seeYouOn0128 from './assets/see-you-on_0128.png';
+import coverTaichiAndSsuYuText from './assets/cover-page_taichi-and-ssuyu_white.webp';
+import coverWeddingText from './assets/cover-page_wedding_white.webp';
+import seeYouOn0128 from './assets/see-you-on_0128.webp';
 
-import letterBgImg from './assets/taichi-and-ssuyu.png';
-import dazhidenhuaLocation from './assets/dazhidenhua-location.jpg';
-import dazhidenhuaTrans from './assets/dazhidenhua-transport.jpg';
+import letterBgImg from './assets/taichi-and-ssuyu.webp';
+import dazhidenhuaLocation from './assets/dazhidenhua-location.webp';
+import dazhidenhuaTrans from './assets/dazhidenhua-transport.webp';
 
 import welcomeLetterText from './assets/welcom-letter.json'
 
-import qSsuyu from './assets/ssuyu-q.png';
-import qTaichi from './assets/taichi-q.png';
+import qSsuyu from './assets/ssuyu-q.webp';
+import qTaichi from './assets/taichi-q.webp';
 
 import { animated, useSpring } from '@react-spring/web';
 
@@ -34,6 +35,8 @@ function App() {
   const receiver: string | null = queryParameters.get("r");
 
   const parallax = useRef<IParallax>(null!);
+
+  const audioPlayer = useRef<HTMLAudioElement>(null); 
 
   const [currPage, setCurrPage] = useState(0);
   function getWelcomLetter(currentPage: number){
@@ -93,6 +96,26 @@ function App() {
       container.removeEventListener('scroll', handleScroll)
     }
   }, [lastOffset]);
+
+  window.addEventListener('click', () => {
+    audioPlayer.current?.play();
+    // if(audioPlayer.current){
+    //   audioPlayer.current.muted = false;
+    // }
+  });
+
+  window.addEventListener('touchstart', () => {
+    audioPlayer.current?.play();
+    // if(audioPlayer.current){
+    //   audioPlayer.current.muted = false;
+    // }
+  });
+
+  useEffect(() => {
+    if(audioPlayer.current){
+      audioPlayer.current.muted = false;
+    }
+  }, []);
 
   const [p1Springs] = useSpring(
     () => ({
@@ -167,6 +190,7 @@ function App() {
 
   return (
     <>
+      <audio ref={audioPlayer} src={bgm} loop autoPlay muted />
       <Parallax className='bg-no-repeat bg-center bg-cover' ref={parallax} pages={6} style={{ top: '0', left: '0', backgroundImage: `url(${bgImg})` }}>
         <ParallaxLayer className='relative' offset={0} speed={0}>
           <animated.div
@@ -205,10 +229,10 @@ function App() {
           </div>
         </ParallaxLayer>
         <ParallaxLayer className='relative w-full' sticky={{ start: 1, end: 5 }} speed={0}>
-            <div className='absolute w-7/12 lg:w-2/12 md:w-4/12 sm:w-4/12 flex justify-center items-center animate-wiggle-more animate-infinite animate-duration-[2500ms] animate-delay-500 animate-ease-in' style={{ bottom: '8px', left: '-40px' }}>
+            <div className='absolute w-7/12 lg:w-2/12 md:w-4/12 sm:w-4/12 flex justify-center items-center animate-wiggle-more animate-infinite animate-duration-[2500ms] animate-delay-500 animate-ease-in' style={{ bottom: '4px', left: '-40px' }}>
               <img className='w-full' src={qSsuyu} />
             </div>
-            <div className='absolute w-7/12 lg:w-2/12 md:w-4/12 sm:w-4/12 flex justify-center items-center animate-wiggle-more animate-infinite animate-duration-[2500ms] animate-ease-in' style={{ top: '8px', right: '-40px' }}>
+            <div className='absolute w-7/12 lg:w-2/12 md:w-4/12 sm:w-4/12 flex justify-center items-center animate-wiggle-more animate-infinite animate-duration-[2500ms] animate-ease-in' style={{ top: '4px', right: '-40px' }}>
               <img className='w-full' src={qTaichi} />
             </div>
         </ParallaxLayer>
@@ -227,14 +251,14 @@ function App() {
             >
               <img className='w-full' src={ssuyuSingle} />
             </div>
-            <div className='flex flex-col pl-4 text-3xl lg:text-5xl md:text-4xl sm:text-3xl' style={{ fontFamily: 'chenyuluoyan-mono', color: '#3D464E' }}>
+            <div className='flex flex-col pl-4 text-2xl lg:text-5xl md:text-4xl sm:text-3xl' style={{ fontFamily: 'chenyuluoyan-mono', color: '#3D464E' }}>
               <div>新娘 游思愉</div>
               <div className='mt-7'>新娘家長</div>
               <div>游象銘 高玉娟</div>
             </div>
           </div>
           <div className='absolute flex flex-row justify-center items-center w-full right-1/20 lg:-right-1/4 md:-right-1/4 sm:-right-1/4' style={{ bottom: '18%' }}>
-            <div className='flex flex-col pr-4 text-3xl lg:text-5xl md:text-4xl sm:text-3xl' style={{ fontFamily: 'chenyuluoyan-mono', color: '#3D464E' }}>
+            <div className='flex flex-col pr-4 text-2xl lg:text-5xl md:text-4xl sm:text-3xl' style={{ fontFamily: 'chenyuluoyan-mono', color: '#3D464E' }}>
               <div>新郎 彭泰淇</div>
               <div className='mt-7'>新郎家長</div>
               <div>彭文良 賴儀娟</div>
