@@ -138,7 +138,7 @@ function App() {
         left: '-2%',
         opacity: '0',
         transform: 'rotate(9deg)',
-        filter: 'drop-shadow(0 25px 25px rgb(0 0 0 / 0.15))',
+        filter: 'drop-shadow(0 4px 3px rgb(0 0 0 / 0.07)) drop-shadow(0 2px 2px rgb(0 0 0 / 0.06))',
       },
       to: { 
         top: '42.5%',
@@ -161,7 +161,7 @@ function App() {
         right: '2%',
         opacity: '0',
         transform: 'rotate(-15deg)',
-        filter: 'drop-shadow(0 25px 25px rgb(0 0 0 / 0.15))'  
+        filter: 'drop-shadow(0 4px 3px rgb(0 0 0 / 0.07)) drop-shadow(0 2px 2px rgb(0 0 0 / 0.06))'  
       },
       to: { 
         top: '40%',
@@ -185,7 +185,7 @@ function App() {
         right: '20%',
         opacity: '0',
         transform: 'rotate(-8deg)',
-        filter: 'drop-shadow(0 25px 25px rgb(0 0 0 / 0.15))'  
+        filter: 'drop-shadow(0 4px 3px rgb(0 0 0 / 0.07)) drop-shadow(0 2px 2px rgb(0 0 0 / 0.06))'  
       },
       to: { 
         top: '53%',
