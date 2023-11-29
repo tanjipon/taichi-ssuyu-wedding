@@ -40,23 +40,23 @@ function App() {
 
   const [currPage, setCurrPage] = useState(0);
   function getWelcomLetter(currentPage: number){
-    if (currentPage === 1){
-      return (
-        <TypeAnimation
-          className='w-full h-full text-center text-xl lg:text-3xl md:text-xl sm:text-xl'
-          sequence={[
-            // Same substring at the start will only be typed once, initially
-            getLetterText(receiver),
-          ]}
-          speed={10}
-          style={{ whiteSpace: 'pre-line', color: '#3D464E', fontFamily: 'chenyuluoyan-mono' }}
-          cursor={false}
-          wrapper='div' 
-        />
-      );
-    } else {
-      return <></>;
-    }
+    // if (currentPage === 1){
+    return (
+      <TypeAnimation
+        className='w-full h-full text-center text-xl lg:text-3xl md:text-xl sm:text-xl'
+        sequence={[
+          // Same substring at the start will only be typed once, initially
+          getLetterText(receiver),
+        ]}
+        speed={10}
+        style={{ whiteSpace: 'pre-line', color: '#3D464E', fontFamily: 'chenyuluoyan-mono' }}
+        cursor={false}
+        wrapper='div'    
+      />
+    );
+    // } else {
+    //   return <></>;
+    // }
   }
 
   function getLetterText(receiver: string | null): string {
@@ -71,31 +71,57 @@ function App() {
   }
 
   const [lastOffset, setLastOffset] = useState(0);
-  useEffect(() => {
-    const handleScroll = () => {
-      const pageHeight: number = parallax.current.space;
-      const currentOffset: number = parallax.current.current / pageHeight;
-      const currentPage: number = Math.trunc(currentOffset);
-      const currentPageOffset: number = currentOffset - currentPage;
+  // useEffect(() => {
+  //   const handleScroll = () => {
+  //     const pageHeight: number = parallax.current.space;
+  //     const currentOffset: number = parallax.current.current / pageHeight;
+  //     const currentPage: number = Math.trunc(currentOffset);
+  //     const currentPageOffset: number = currentOffset - currentPage;
 
-      if (currentOffset > lastOffset && currentPageOffset >= 0.1){
-        parallax.current.scrollTo(Math.ceil(currentOffset));
-        setCurrPage(Math.ceil(currentOffset));
-      } else if (currentOffset < lastOffset && currentPageOffset <= 0.9){
-        parallax.current.scrollTo(Math.floor(currentOffset));
-        setCurrPage(Math.floor(currentOffset));
-      }
+  //     if (currentOffset > lastOffset && currentPageOffset >= 0.1){
+  //       parallax.current.scrollTo(Math.ceil(currentOffset));
+  //       setCurrPage(Math.ceil(currentOffset));
+  //     } else if (currentOffset < lastOffset && currentPageOffset <= 0.9){
+  //       parallax.current.scrollTo(Math.floor(currentOffset));
+  //       setCurrPage(Math.floor(currentOffset));
+  //     }
       
-      setLastOffset(currentOffset);
-    }
+  //     setLastOffset(currentOffset);
+  //   }
 
-    const container = parallax.current.container.current
-    container.addEventListener('scroll', handleScroll)
+  //   const container = parallax.current.container.current;
+  //   container.addEventListener('scroll', handleScroll);
+
+  //   return () => {
+  //     container.removeEventListener('scroll', handleScroll);
+  //   }
+  // }, []);
+
+  const handleScroll = (e: React.UIEvent) => {
+    const pageHeight: number = parallax.current.space;
+    const currentOffset: number = parallax.current.current / pageHeight;
+    const currentPage: number = Math.trunc(currentOffset);
+    const currentPageOffset: number = currentOffset - currentPage;
+
+    if (currentOffset > lastOffset && currentPageOffset >= 0.1){
+      parallax.current.scrollTo(Math.ceil(currentOffset));
+      setCurrPage(Math.ceil(currentOffset));
+    } else if (currentOffset < lastOffset && currentPageOffset <= 0.9){
+      parallax.current.scrollTo(Math.floor(currentOffset));
+      setCurrPage(Math.floor(currentOffset));
+    }
+    
+    setLastOffset(currentOffset);
+  };
+
+  useEffect(() => {
+    const container = parallax.current.container.current;
+    container.addEventListener('scroll', handleScroll);
 
     return () => {
-      container.removeEventListener('scroll', handleScroll)
+      container.removeEventListener('scroll', handleScroll);
     }
-  }, []);
+  });
 
   window.addEventListener('click', () => {
     audioPlayer.current?.play();
@@ -177,8 +203,8 @@ function App() {
   );
 
   return (
-    <>
-      <audio ref={audioPlayer} src={bgm} loop autoPlay muted />
+    <div onScroll={handleScroll}>
+      <audio ref={audioPlayer} src={bgm} loop autoPlay />
       <Parallax className='bg-no-repeat bg-center bg-cover' ref={parallax} pages={6} style={{ top: '0', left: '0', backgroundImage: `url(${bgImg})` }}>
         <ParallaxLayer className='relative' offset={0} speed={0}>
           <animated.div
@@ -302,7 +328,7 @@ function App() {
           </div>
         </ParallaxLayer>
       </Parallax>
-    </>
+    </div>
   )
 }
 
