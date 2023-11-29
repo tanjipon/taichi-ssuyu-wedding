@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 import { Parallax, ParallaxLayer, IParallax } from '@react-spring/parallax';
 import './App.css'
 
@@ -30,7 +30,7 @@ import { animated, useSpring } from '@react-spring/web';
 
 import { TypeAnimation } from 'react-type-animation';
 
-import { useInViewEffect } from 'react-hook-inview'
+import { useInView } from 'react-hook-inview'
 
 function App() {
   const queryParameters: URLSearchParams = new URLSearchParams(window.location.search);
@@ -40,84 +40,13 @@ function App() {
 
   const audioPlayer = useRef<HTMLAudioElement>(null); 
 
-  // const [letterRef, isVisible] = useInView({
-  //   threshold: 0.1,
-  // });
-
-  const [currPage, setCurrPage] = useState(0);
-  const p0Ref = useInViewEffect(
-    ([entry]) => {
-      if (entry.isIntersecting && currPage !== 0) {
-        parallax.current.scrollTo(0);
-        setCurrPage(0);
-      }
-    },
-    { threshold: 0 },
-  );
-
-  const p1Ref = useInViewEffect(
-    ([entry]) => {
-      if (entry.isIntersecting && currPage !== 1) {
-        parallax.current.scrollTo(1);
-        setCurrPage(1);
-      }
-    },
-    { threshold: 0 },
-  );
-
-  const p2TRef = useInViewEffect(
-    ([entry]) => {
-      if (entry.isIntersecting && currPage !== 2) {
-        parallax.current.scrollTo(2);
-        setCurrPage(2);
-      }
-    },
-    { threshold: 0 },
-  );
-
-  const p2BRef = useInViewEffect(
-    ([entry]) => {
-      if (entry.isIntersecting && currPage !== 2) {
-        parallax.current.scrollTo(2);
-        setCurrPage(2);
-      }
-    },
-    { threshold: 0 },
-  );
-
-  const p3TRef = useInViewEffect(
-    ([entry]) => {
-      if (entry.isIntersecting && currPage !== 3) {
-        parallax.current.scrollTo(3);
-        setCurrPage(3);
-      }
-    },
-    { threshold: 0 },
-  );
-
-  const p4Ref = useInViewEffect(
-    ([entry]) => {
-      if (entry.isIntersecting && currPage !== 4) {
-        parallax.current.scrollTo(4);
-        setCurrPage(4);
-      }
-    },
-    { threshold: 0 },
-  );
-
-  const p5Ref = useInViewEffect(
-    ([entry]) => {
-      if (entry.isIntersecting && currPage !== 5) {
-        parallax.current.scrollTo(5);
-        setCurrPage(5);
-      }
-    },
-    { threshold: 0 },
-  );
+  const [p1Ref, isP1Visible] = useInView({
+    threshold: 0,
+  });
 
   // const [currPage, setCurrPage] = useState(0);
   function getWelcomLetter(){
-    if (currPage === 1){
+    if (isP1Visible){
       return (
         <TypeAnimation
           className='w-full h-full text-center text-xl lg:text-3xl md:text-xl sm:text-xl'
@@ -230,7 +159,7 @@ function App() {
     <>
       <audio ref={audioPlayer} src={bgm} loop autoPlay />
       <Parallax className='bg-no-repeat bg-center bg-cover' ref={parallax} pages={6} style={{ top: '0', left: '0', backgroundImage: `url(${bgImg})` }}>
-        <ParallaxLayer className='relative' offset={0} speed={0}>
+        <ParallaxLayer className='relative' offset={0} speed={0.5}>
           <animated.div
             className='absolute bg-white p-1 rounded w-6/12 lg:w-3/12 md:w-4/12 sm:w-4/12 shadow-xl' 
             style={p1Springs}
@@ -238,7 +167,6 @@ function App() {
             <img className='w-full' src={photo1} />
           </animated.div>
           <animated.div 
-            ref={p0Ref} 
             className='absolute bg-white p-1 rounded w-4/12 lg:w-2/12 md:w-3/12 sm:w-3/12 shadow-xl' 
             style={p2Springs}
           >
@@ -275,15 +203,15 @@ function App() {
               <img className='w-full' src={qTaichi} />
             </div>
         </ParallaxLayer>
-        <ParallaxLayer className='flex justify-center items-center' offset={1} speed={0}>
+        <ParallaxLayer className='flex justify-center items-center' offset={1} speed={0.2}>
           <div ref={p1Ref} className='w-11/12 lg:w-6/12 md:w-10/12 sm:w-10/12 h-4/6 bg-no-repeat bg-center bg-contain' style={{ backgroundImage: `url(${letterBgImg})` }}>
             <div className='p-4 shadow-lg rounded-md w-full h-full' style={{ backgroundColor: 'rgba(255,255,255,0.8)' }}>
               { getWelcomLetter() }
             </div>
           </div>
         </ParallaxLayer>
-        <ParallaxLayer className='relative' offset={2} speed={0}>
-          <div ref={p2TRef} className='absolute flex flex-row justify-center items-center w-full left-1/20 lg:-left-1/4 md:-left-1/4 sm:-left-1/4' style={{ top: '18%' }}>
+        <ParallaxLayer className='relative' offset={2} speed={0.2}>
+          <div className='absolute flex flex-row justify-center items-center w-full left-1/20 lg:-left-1/4 md:-left-1/4 sm:-left-1/4' style={{ top: '18%' }}>
             <div 
               className='bg-white p-1 rounded w-5/12 lg:w-2/12 md:w-3/12 sm:w-3/12 shadow-xl'
               style={{ transform: 'rotate(-3deg)' }} 
@@ -296,7 +224,7 @@ function App() {
               <div>游象銘 高玉娟</div>
             </div>
           </div>
-          <div ref={p2BRef} className='absolute flex flex-row justify-center items-center w-full right-1/20 lg:-right-1/4 md:-right-1/4 sm:-right-1/4' style={{ bottom: '18%' }}>
+          <div className='absolute flex flex-row justify-center items-center w-full right-1/20 lg:-right-1/4 md:-right-1/4 sm:-right-1/4' style={{ bottom: '18%' }}>
             <div className='flex flex-col pr-4 text-2xl lg:text-5xl md:text-4xl sm:text-3xl' style={{ fontFamily: 'chenyuluoyan-mono', color: '#3D464E' }}>
               <div>新郎 彭泰淇</div>
               <div className='mt-7'>新郎家長</div>
@@ -310,8 +238,8 @@ function App() {
             </div>
           </div>
         </ParallaxLayer>
-        <ParallaxLayer className='flex flex-col justify-center items-center' offset={3} speed={0}>
-          <div ref={p3TRef} style={{ fontSize: '3em', fontFamily: 'chenyuluoyan-mono', color: '#3D464E', fontWeight: 'bolder' }}>
+        <ParallaxLayer className='flex flex-col justify-center items-center' offset={3} speed={0.2}>
+          <div style={{ fontSize: '3em', fontFamily: 'chenyuluoyan-mono', color: '#3D464E', fontWeight: 'bolder' }}>
             <p>婚宴資訊</p>
           </div>
           <div className='text-3xl lg:text-3xl md:text-3xl sm:text-2xl' style={{ fontFamily: 'chenyuluoyan-mono', color: '#3D464E' }}>
@@ -330,16 +258,16 @@ function App() {
             />
           </div>
         </ParallaxLayer>
-        <ParallaxLayer className='flex flex-col justify-center items-center' offset={4} speed={0}>
-            <div ref={p4Ref} className='p-1 shadow-md w-11/12 lg:w-4/12 md:w-5/12 sm:w-7/12' style={{ backgroundColor: 'white'}}>
+        <ParallaxLayer className='flex flex-col justify-center items-center' offset={4} speed={0.2}>
+            <div className='p-1 shadow-md w-11/12 lg:w-4/12 md:w-5/12 sm:w-7/12' style={{ backgroundColor: 'white'}}>
               <img
                 className='w-full'
                 src={dazhidenhuaTrans}
               />
             </div>
         </ParallaxLayer>
-        <ParallaxLayer className='flex flex-col justify-center items-center' offset={5} speed={0}>
-         <div ref={p5Ref} className='mb-4 flex justify-center w-11/12 lg:w-4/12 md:w-4/12 sm:w-4/12'>
+        <ParallaxLayer className='flex flex-col justify-center items-center' offset={5} speed={0.2}>
+         <div className='mb-4 flex justify-center w-11/12 lg:w-4/12 md:w-4/12 sm:w-4/12'>
               <img
                   className='w-full'
                   src={seeYouOn0128}
