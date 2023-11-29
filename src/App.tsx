@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { Parallax, ParallaxLayer, IParallax } from '@react-spring/parallax';
 import './App.css'
 
