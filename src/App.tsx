@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Parallax, ParallaxLayer, IParallax } from '@react-spring/parallax';
 import './App.css'
 
@@ -32,6 +32,9 @@ import { TypeAnimation } from 'react-type-animation';
 
 import { useInView } from 'react-hook-inview'
 
+import { MdMusicNote } from "react-icons/md";
+import { MdMusicOff } from "react-icons/md";
+
 function App() {
   const queryParameters: URLSearchParams = new URLSearchParams(window.location.search);
   const receiver: string | null = queryParameters.get("r");
@@ -39,19 +42,21 @@ function App() {
   const parallax = useRef<IParallax>(null!);
 
   const audioPlayer = useRef<HTMLAudioElement>(null); 
+  const [isAudioPlaying, setIsAudioPlaying] = useState(false);
+  const toggleAudioControl = () => {
+    setIsAudioPlaying(!isAudioPlaying);
+  };
 
   const [p1Ref, isP1Visible] = useInView({
     threshold: 0,
   });
 
-  // const [currPage, setCurrPage] = useState(0);
   function getWelcomLetter(){
     if (isP1Visible){
       return (
         <TypeAnimation
           className='w-full h-full text-center text-xl lg:text-3xl md:text-xl sm:text-xl'
           sequence={[
-            // Same substring at the start will only be typed once, initially
             getLetterText(receiver),
           ]}
           speed={10}
@@ -76,13 +81,31 @@ function App() {
     return txt;
   }
 
-  window.addEventListener('click', () => {
-    audioPlayer.current?.play();
-  });
+  useEffect(() => {
+    if (isAudioPlaying){
+      audioPlayer.current?.play();
+    } else {
+      audioPlayer.current?.pause();
+    }
+  }, [isAudioPlaying]);
 
-  window.addEventListener('touchstart', () => {
-    audioPlayer.current?.play();
-  });
+  useEffect(() => {
+    const handleBgmPlay = () => {
+      if (!isAudioPlaying){
+        audioPlayer.current?.play();
+        setIsAudioPlaying(!isAudioPlaying);
+        if (audioPlayer.current){
+          audioPlayer.current.volume = 0.3;
+        }
+      }
+    };
+    window.addEventListener('click', handleBgmPlay, {once: true});
+    window.addEventListener('touchstart', handleBgmPlay, {once: true});
+    return () => {
+      window.removeEventListener('click', handleBgmPlay);
+      window.removeEventListener('touchstart', handleBgmPlay);
+    };
+  }, []);
 
   const [p1Springs] = useSpring(
     () => ({
@@ -157,7 +180,7 @@ function App() {
 
   return (
     <>
-      <audio ref={audioPlayer} src={bgm} loop autoPlay />
+      <audio ref={audioPlayer} src={bgm} loop />
       <Parallax className='bg-no-repeat bg-center bg-cover' ref={parallax} pages={6} style={{ top: '0', left: '0', backgroundImage: `url(${bgImg})` }}>
         <ParallaxLayer className='relative' offset={0} speed={0.5}>
           <animated.div
@@ -203,7 +226,7 @@ function App() {
               <img className='w-full' src={qTaichi} />
             </div>
         </ParallaxLayer>
-        <ParallaxLayer className='flex justify-center items-center' offset={1} speed={0.2}>
+        <ParallaxLayer className='flex justify-center items-center' offset={1} speed={0}>
           <div ref={p1Ref} className='w-11/12 lg:w-6/12 md:w-10/12 sm:w-10/12 h-4/6 bg-no-repeat bg-center bg-contain' style={{ backgroundImage: `url(${letterBgImg})` }}>
             <div className='p-4 shadow-lg rounded-md w-full h-full' style={{ backgroundColor: 'rgba(255,255,255,0.8)' }}>
               { getWelcomLetter() }
@@ -218,16 +241,16 @@ function App() {
             >
               <img className='w-full' src={ssuyuSingle} />
             </div>
-            <div className='flex flex-col pl-4 text-2xl lg:text-5xl md:text-4xl sm:text-3xl' style={{ fontFamily: 'chenyuluoyan-mono', color: '#3D464E' }}>
+            <div className='flex flex-col self-start pl-4 text-2xl lg:text-5xl md:text-4xl sm:text-3xl' style={{ fontFamily: 'chenyuluoyan-mono', color: '#3D464E' }}>
               <div>新娘 游思愉</div>
-              <div className='mt-7'>新娘家長</div>
+              <div className='mt-3'>新娘家長</div>
               <div>游象銘 高玉娟</div>
             </div>
           </div>
           <div className='absolute flex flex-row justify-center items-center w-full right-1/20 lg:-right-1/4 md:-right-1/4 sm:-right-1/4' style={{ bottom: '18%' }}>
-            <div className='flex flex-col pr-4 text-2xl lg:text-5xl md:text-4xl sm:text-3xl' style={{ fontFamily: 'chenyuluoyan-mono', color: '#3D464E' }}>
+            <div className='flex flex-col self-end pr-4 text-2xl lg:text-5xl md:text-4xl sm:text-3xl' style={{ fontFamily: 'chenyuluoyan-mono', color: '#3D464E' }}>
               <div>新郎 彭泰淇</div>
-              <div className='mt-7'>新郎家長</div>
+              <div className='mt-3'>新郎家長</div>
               <div>彭文良 賴儀娟</div>
             </div>
             <div 
@@ -279,6 +302,18 @@ function App() {
               src={thankYouPhoto}
             />
           </div>
+        </ParallaxLayer>
+        <ParallaxLayer className='relative w-full' sticky={{ start: 0, end: 5 }} speed={0}> 
+          {
+            isAudioPlaying?
+            <div className='absolute flex justify-center items-center rounded-full border-2 cursor-pointer animate-spin animate-infinite animate-duration-[2000ms] animate-ease-in-out' style={{ bottom: '15px', right: '20px', backgroundColor: '#FFC0CB', borderColor: '#FFFAFA' }} onClick={toggleAudioControl}>
+              <MdMusicNote className='text-2xl lg:text-5xl md:text-4xl sm:text-3xl' style={{ color: '#FFFAFA' }} />
+            </div>
+            :
+            <div className='absolute flex justify-center items-center rounded-full border-2 cursor-pointer animate-pulse animate-infinite animate-duration-[2000ms] animate-ease-in-out' style={{ bottom: '15px', right: '20px', backgroundColor: '#FFC0CB', borderColor: '#FFFAFA' }} onClick={toggleAudioControl}>
+              <MdMusicOff className='text-2xl lg:text-5xl md:text-4xl sm:text-3xl' style={{ color: '#FFFAFA' }} />
+            </div>
+          }
         </ParallaxLayer>
       </Parallax>
     </>
