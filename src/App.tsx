@@ -38,7 +38,7 @@ function App() {
 
   const audioPlayer = useRef<HTMLAudioElement>(null); 
 
-  const [currPage, setCurrPage] = useState(0);
+  // const [currPage, setCurrPage] = useState(0);
   function getWelcomLetter(){
     // if (currentPage === 1){
     return (
@@ -70,7 +70,7 @@ function App() {
     return txt;
   }
 
-  const [lastOffset, setLastOffset] = useState(0);
+  // const [lastOffset, setLastOffset] = useState(0);
   // useEffect(() => {
   //   const handleScroll = () => {
   //     const pageHeight: number = parallax.current.space;
@@ -97,31 +97,31 @@ function App() {
   //   }
   // }, []);
 
-  const handleScroll = () => {
-    const pageHeight: number = parallax.current.space;
-    const currentOffset: number = parallax.current.current / pageHeight;
-    const currentPage: number = Math.trunc(currentOffset);
-    const currentPageOffset: number = currentOffset - currentPage;
+  // const handleScroll = () => {
+  //   const pageHeight: number = parallax.current.space;
+  //   const currentOffset: number = parallax.current.current / pageHeight;
+  //   const currentPage: number = Math.trunc(currentOffset);
+  //   const currentPageOffset: number = currentOffset - currentPage;
 
-    if (currentOffset > lastOffset && currentPageOffset >= 0.1){
-      parallax.current.scrollTo(Math.ceil(currentOffset));
-      setCurrPage(Math.ceil(currentOffset));
-    } else if (currentOffset < lastOffset && currentPageOffset <= 0.9){
-      parallax.current.scrollTo(Math.floor(currentOffset));
-      setCurrPage(Math.floor(currentOffset));
-    }
+  //   if (currentOffset > lastOffset && currentPageOffset >= 0.1){
+  //     parallax.current.scrollTo(Math.ceil(currentOffset));
+  //     setCurrPage(Math.ceil(currentOffset));
+  //   } else if (currentOffset < lastOffset && currentPageOffset <= 0.9){
+  //     parallax.current.scrollTo(Math.floor(currentOffset));
+  //     setCurrPage(Math.floor(currentOffset));
+  //   }
     
-    setLastOffset(currentOffset);
-  };
+  //   setLastOffset(currentOffset);
+  // };
 
-  useEffect(() => {
-    const container = parallax.current.container.current;
-    container.addEventListener('scroll', handleScroll);
+  // useEffect(() => {
+  //   const container = parallax.current.container.current;
+  //   container.addEventListener('scroll', handleScroll);
 
-    return () => {
-      container.removeEventListener('scroll', handleScroll);
-    }
-  });
+  //   return () => {
+  //     container.removeEventListener('scroll', handleScroll);
+  //   }
+  // }, []);
 
   window.addEventListener('click', () => {
     audioPlayer.current?.play();
@@ -203,7 +203,7 @@ function App() {
   );
 
   return (
-    <div onScroll={handleScroll}>
+    <>
       <audio ref={audioPlayer} src={bgm} loop autoPlay />
       <Parallax className='bg-no-repeat bg-center bg-cover' ref={parallax} pages={6} style={{ top: '0', left: '0', backgroundImage: `url(${bgImg})` }}>
         <ParallaxLayer className='relative' offset={0} speed={0}>
@@ -328,7 +328,7 @@ function App() {
           </div>
         </ParallaxLayer>
       </Parallax>
-    </div>
+    </>
   )
 }
 
