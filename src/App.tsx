@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useRef } from 'react';
 import { Parallax, ParallaxLayer, IParallax } from '@react-spring/parallax';
 import './App.css'
 
@@ -151,7 +151,7 @@ function App() {
         duration: 1250,
       },
     }),
-    [currPage]
+    []
   );
 
   const [p2Springs] = useSpring(
@@ -175,7 +175,7 @@ function App() {
         duration: 1250
       },
     }),
-    [currPage]
+    []
   );
 
   const [p3Springs] = useSpring(
@@ -199,7 +199,7 @@ function App() {
         duration: 1250
       },
     }),
-    [currPage]
+    []
   );
 
   return (
