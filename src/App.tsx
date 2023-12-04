@@ -48,6 +48,10 @@ function App() {
   const [letterRef, isLetterVisible] = useInView({
     threshold: 0,
   });
+
+  const [coverTxtRef, isCoverTxtVisible] = useInView({
+    threshold: 0,
+  });
   
   const [taichiSingleRef, isTaichiSingleVisible] = useInView({
     threshold: 0,
@@ -120,8 +124,9 @@ function App() {
     <>
       <audio ref={audioPlayer} src={bgm} loop/>
       <Parallax className='bg-no-repeat bg-center bg-cover' ref={parallax} pages={8} style={{ top: '0', left: '0', backgroundImage: `url(${bgImg})`, backgroundColor: '#3D464E' }}>
-        <ParallaxLayer className='relative' offset={0} speed={0}>
+        <ParallaxLayer className='relative' offset={0} speed={1}>
           <div
+            hidden={!isCoverTxtVisible}
             className='absolute w-6/12 lg:w-3/12 md:w-4/12 sm:w-4/12 animate-fade-up animate-once animate-duration-[1500ms] animate-delay-[50ms] animate-ease-in-out' 
             style={{ 
               top: '42.5%',
@@ -132,6 +137,7 @@ function App() {
             <img className='w-full p-1 rounded shadow-xl rotate-[9deg]' style={{ filter: 'drop-shadow(0 4px 3px rgb(0 0 0 / 0.07)) drop-shadow(0 2px 2px rgb(0 0 0 / 0.06))', backgroundColor: '#FFFAFA' }} src={photo1}/>
           </div>
           <div
+            hidden={!isCoverTxtVisible}
             className='absolute w-4/12 lg:w-2/12 md:w-3/12 sm:w-3/12 animate-fade-up animate-once animate-duration-[1500ms] animate-delay-[250ms] animate-ease-in-out' 
             style={{ 
               top: '40%',
@@ -142,6 +148,7 @@ function App() {
             <img className='w-full p-1 rounded shadow-xl rotate-[-15deg]' style={{ filter: 'drop-shadow(0 4px 3px rgb(0 0 0 / 0.07)) drop-shadow(0 2px 2px rgb(0 0 0 / 0.06))', backgroundColor: '#FFFAFA' }} src={photo2}/>
           </div>
           <div
+            hidden={!isCoverTxtVisible}
             className='absolute w-6/12 lg:w-3/12 md:w-4/12 sm:w-4/12 animate-fade-up animate-once animate-duration-[1500ms] animate-delay-[500ms] animate-ease-in-out' 
             style={{ 
               top: '53%',
@@ -153,14 +160,14 @@ function App() {
           </div>
         </ParallaxLayer>
         <ParallaxLayer offset={0.15} speed={-0.2}>
-          <div className='w-full'>
-            <div className='flex justify-center w-full animate-fade-down animate-once animate-duration-[1500ms] animate-delay-[50ms] animate-ease-in-out'>
+          <div ref={coverTxtRef} className='w-full'>
+            <div hidden={!isCoverTxtVisible} className='flex justify-center w-full animate-fade-down animate-once animate-duration-[1500ms] animate-delay-[50ms] animate-ease-in-out'>
               <img
                   src={coverTaichiAndSsuYuText}
                   width={'70%'}
               />
             </div>
-            <div className='flex justify-center w-full animate-fade-down animate-once animate-duration-[1500ms] animate-delay-[50ms] animate-ease-in-out'>
+            <div hidden={!isCoverTxtVisible} className='flex justify-center w-full animate-fade-down animate-once animate-duration-[1500ms] animate-delay-[50ms] animate-ease-in-out'>
               <img
                   src={coverWeddingText}
                   width={'35%'}

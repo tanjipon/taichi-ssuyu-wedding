@@ -13,7 +13,7 @@ export default {
       right: {
         '1/20': '5%'
       }
-    },
+    }
   },
   plugins: [
     require('tailwindcss-animated')
