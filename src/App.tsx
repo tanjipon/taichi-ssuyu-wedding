@@ -189,10 +189,9 @@ function App() {
             isTaichiSingleVisible? 
             <>
               <div 
-                className='bg-white p-1 rounded w-10/12 lg:w-3/12 md:w-5/12 sm:w-5/12 shadow-xl animate-fade-left animate-once animate-duration-[1500ms] animate-ease-in-out' 
-                style={{ transform: 'rotate(0deg)' }}
+                className='w-10/12 lg:w-3/12 md:w-5/12 sm:w-5/12 animate-fade-left animate-once animate-duration-[1500ms] animate-ease-in-out' 
               >
-                <img className='w-full' src={taichiSingle} />
+                <img className='w-full p-1 rounded shadow-xl' style={{ filter: 'drop-shadow(0 4px 3px rgb(0 0 0 / 0.07)) drop-shadow(0 2px 2px rgb(0 0 0 / 0.06))', backgroundColor: '#FFFAFA' }} src={taichiSingle} />
               </div>
               <div className='flex flex-col text-4xl lg:text-5xl md:text-4xl sm:text-3xl mt-4 animate-fade-right animate-once animate-duration-[1500ms] animate-ease-in-out' style={{ fontFamily: 'chenyuluoyan-mono', color: '#3D464E' }}>
                 <div>新郎 彭泰淇</div>
@@ -209,10 +208,9 @@ function App() {
               isSsuYuSingleVisible?
               <>
                 <div 
-                  className='bg-white p-1 rounded w-10/12 lg:w-3/12 md:w-5/12 sm:w-5/12 shadow-xl animate-fade-right animate-once animate-duration-[1500ms] animate-ease-in-out'
-                  style={{ transform: 'rotate(0deg)' }} 
+                  className='w-10/12 lg:w-3/12 md:w-5/12 sm:w-5/12 animate-fade-right animate-once animate-duration-[1500ms] animate-ease-in-out'
                 >
-                  <img className='w-full' src={ssuyuSingle} />
+                  <img className='w-full p-1 rounded shadow-xl' style={{ filter: 'drop-shadow(0 4px 3px rgb(0 0 0 / 0.07)) drop-shadow(0 2px 2px rgb(0 0 0 / 0.06))', backgroundColor: '#FFFAFA' }} src={ssuyuSingle} />
                 </div>
                 <div className='flex flex-col text-4xl lg:text-5xl md:text-4xl sm:text-3xl mt-4 animate-fade-left animate-once animate-duration-[1500ms] animate-ease-in-out' style={{ fontFamily: 'chenyuluoyan-mono', color: '#3D464E' }}>
                   <div>新娘 游思愉</div>
@@ -236,7 +234,7 @@ function App() {
                 彭文良 賴儀娟
               </div>
             </div>
-            <div className='flex flex-col justify-center items-center ml-3'>
+            <div className='flex flex-col justify-center items-center ml-'>
               <div className='mt-3 text-4xl lg:text-5xl md:text-5xl sm:text-5xl' style={{ fontFamily: 'chenyuluoyan-mono', color: '#3D464E' }}>
                 新娘家長
               </div>
