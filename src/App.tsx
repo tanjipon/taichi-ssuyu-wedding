@@ -228,7 +228,7 @@ function App() {
             <p>婚宴資訊</p>
           </div>
           <div className='mt-12 flex flex-row justify-center items-center'>
-            <div className='flex flex-col justify-center items-center mr-4'>
+            <div className='flex flex-col justify-center items-center mr-3'>
               <div className='mt-3 text-4xl lg:text-5xl md:text-5xl sm:text-5xl' style={{ fontFamily: 'chenyuluoyan-mono', color: '#3D464E' }}>
                 新郎家長
               </div>
@@ -236,7 +236,7 @@ function App() {
                 彭文良 賴儀娟
               </div>
             </div>
-            <div className='flex flex-col justify-center items-center ml-4'>
+            <div className='flex flex-col justify-center items-center ml-3'>
               <div className='mt-3 text-4xl lg:text-5xl md:text-5xl sm:text-5xl' style={{ fontFamily: 'chenyuluoyan-mono', color: '#3D464E' }}>
                 新娘家長
               </div>
