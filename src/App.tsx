@@ -230,7 +230,7 @@ function App() {
               <div className='mt-3 text-4xl lg:text-5xl md:text-5xl sm:text-5xl' style={{ fontFamily: 'chenyuluoyan-mono', color: '#3D464E' }}>
                 新郎家長
               </div>
-              <div className='text-4xl lg:text-5xl md:text-5xl sm:text-5xl' style={{ fontFamily: 'chenyuluoyan-mono', color: '#3D464E' }}>
+              <div className='text-3xl lg:text-5xl md:text-5xl sm:text-5xl' style={{ fontFamily: 'chenyuluoyan-mono', color: '#3D464E' }}>
                 彭文良 賴儀娟
               </div>
             </div>
@@ -238,7 +238,7 @@ function App() {
               <div className='mt-3 text-4xl lg:text-5xl md:text-5xl sm:text-5xl' style={{ fontFamily: 'chenyuluoyan-mono', color: '#3D464E' }}>
                 新娘家長
               </div>
-              <div className='text-4xl lg:text-5xl md:text-5xl sm:text-5xl' style={{ fontFamily: 'chenyuluoyan-mono', color: '#3D464E' }}>
+              <div className='text-3xl lg:text-5xl md:text-5xl sm:text-5xl' style={{ fontFamily: 'chenyuluoyan-mono', color: '#3D464E' }}>
                 游象銘 高玉娟
               </div>
             </div>
@@ -250,7 +250,7 @@ function App() {
             <p>台北市中山區植福路8號</p>
           </div>
           <div className='mb-2 text-3xl lg:text-4xl md:text-4xl sm:text-4xl' style={{ fontFamily: 'chenyuluoyan-mono', color: '#3D464E' }}>
-            <p>2023 .01 .28　11:50 入席</p>
+            <p>2024 .01 .28　11:50 入席</p>
           </div>
         </ParallaxLayer>
         <ParallaxLayer className='flex flex-col justify-center items-center' offset={5} speed={0.2}>
