@@ -39,6 +39,10 @@ function App() {
 
   const parallax = useRef<IParallax>(null!);
 
+  const [isP1Load, setIsP1Load] = useState(false);
+  const [isP2Load, setIsP2Load] = useState(false);
+  const [isP3Load, setIsP3Load] = useState(false);
+
   const audioPlayer = useRef<HTMLAudioElement>(null); 
   const [isAudioPlaying, setIsAudioPlaying] = useState(false);
   const toggleAudioControl = () => {
@@ -126,7 +130,7 @@ function App() {
       <Parallax className='bg-no-repeat bg-center bg-cover' ref={parallax} pages={8} style={{ top: '0', left: '0', backgroundImage: `url(${bgImg})`, backgroundColor: '#3D464E' }}>
         <ParallaxLayer className='relative' offset={0} speed={1}>
           <div
-            hidden={!isCoverTxtVisible}
+            hidden={!isCoverTxtVisible && !isP1Load}
             className='absolute w-6/12 lg:w-3/12 md:w-4/12 sm:w-4/12 animate-fade-up animate-once animate-duration-[1500ms] animate-delay-[50ms] animate-ease-in-out' 
             style={{ 
               top: '42.5%',
@@ -134,10 +138,17 @@ function App() {
               backgroundColor: 'background-color:rgba(0, 0, 0, 0)'
             }}
           >
-            <img className='w-full p-1 rounded shadow-xl rotate-[9deg]' style={{ filter: 'drop-shadow(0 4px 3px rgb(0 0 0 / 0.07)) drop-shadow(0 2px 2px rgb(0 0 0 / 0.06))', backgroundColor: '#FFFAFA' }} src={photo1}/>
+            <img className='w-full p-1 rounded shadow-xl rotate-[9deg]' 
+              style={{ 
+                filter: 'drop-shadow(0 4px 3px rgb(0 0 0 / 0.07)) drop-shadow(0 2px 2px rgb(0 0 0 / 0.06))', 
+                backgroundColor: '#FFFAFA' 
+              }} 
+              src={photo1} 
+              onLoad={() => setIsP1Load(true)}
+            />
           </div>
           <div
-            hidden={!isCoverTxtVisible}
+            hidden={!isCoverTxtVisible && !isP2Load}
             className='absolute w-4/12 lg:w-2/12 md:w-3/12 sm:w-3/12 animate-fade-up animate-once animate-duration-[1500ms] animate-delay-[250ms] animate-ease-in-out' 
             style={{ 
               top: '40%',
@@ -145,10 +156,17 @@ function App() {
               backgroundColor: 'background-color:rgba(0, 0, 0, 0)'
             }}
           >
-            <img className='w-full p-1 rounded shadow-xl rotate-[-15deg]' style={{ filter: 'drop-shadow(0 4px 3px rgb(0 0 0 / 0.07)) drop-shadow(0 2px 2px rgb(0 0 0 / 0.06))', backgroundColor: '#FFFAFA' }} src={photo2}/>
+            <img className='w-full p-1 rounded shadow-xl rotate-[-15deg]' 
+              style={{ 
+                filter: 'drop-shadow(0 4px 3px rgb(0 0 0 / 0.07)) drop-shadow(0 2px 2px rgb(0 0 0 / 0.06))', 
+                backgroundColor: '#FFFAFA' 
+              }} 
+              src={photo2}
+              onLoad={() => setIsP2Load(true)}
+            />
           </div>
           <div
-            hidden={!isCoverTxtVisible}
+            hidden={!isCoverTxtVisible && !isP3Load}
             className='absolute w-6/12 lg:w-3/12 md:w-4/12 sm:w-4/12 animate-fade-up animate-once animate-duration-[1500ms] animate-delay-[500ms] animate-ease-in-out' 
             style={{ 
               top: '53%',
@@ -156,7 +174,15 @@ function App() {
               backgroundColor: 'background-color:rgba(0, 0, 0, 0)'
             }}
           >
-            <img className='w-full p-1 rounded shadow-xl rotate-[-8deg]' style={{ filter: 'drop-shadow(0 4px 3px rgb(0 0 0 / 0.07)) drop-shadow(0 2px 2px rgb(0 0 0 / 0.06))', backgroundColor: '#FFFAFA' }} src={photo3}/>
+            <img 
+              className='w-full p-1 rounded shadow-xl rotate-[-8deg]' 
+              style={{ 
+                filter: 'drop-shadow(0 4px 3px rgb(0 0 0 / 0.07)) drop-shadow(0 2px 2px rgb(0 0 0 / 0.06))', 
+                backgroundColor: '#FFFAFA' 
+              }} 
+              src={photo3}
+              onLoad={() => setIsP3Load(true)}
+            />
           </div>
         </ParallaxLayer>
         <ParallaxLayer offset={0.15} speed={-0.2}>
