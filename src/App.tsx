@@ -128,7 +128,7 @@ function App() {
     <>
       <audio ref={audioPlayer} src={bgm} loop/>
       <Parallax className='bg-no-repeat bg-center bg-cover' ref={parallax} pages={8} style={{ top: '0', left: '0', backgroundImage: `url(${bgImg})`, backgroundColor: '#3D464E' }}>
-        <ParallaxLayer className='relative' offset={0} speed={1}>
+        <ParallaxLayer className='relative' offset={0} speed={0}>
           <div
             hidden={!isCoverTxtVisible && !isP1Load}
             className='absolute w-6/12 lg:w-3/12 md:w-4/12 sm:w-4/12 animate-fade-up animate-once animate-duration-[1500ms] animate-delay-[50ms] animate-ease-in-out' 
