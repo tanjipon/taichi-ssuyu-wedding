@@ -127,10 +127,10 @@ function App() {
   return (
     <>
       <audio ref={audioPlayer} src={bgm} loop/>
-      <Parallax className='bg-no-repeat bg-center bg-cover' ref={parallax} pages={8} style={{ top: '0', left: '0', backgroundImage: `url(${bgImg})`, backgroundColor: '#3D464E' }}>
+      <Parallax className='bg-no-repeat bg-center bg-cover' ref={parallax} pages={8} style={{ top: '0', left: '0', backgroundImage: `url(${bgImg})` }}>
         <ParallaxLayer className='relative' offset={0} speed={0}>
           <div
-            hidden={!isCoverTxtVisible}
+            hidden={!isCoverTxtVisible && !isP1Load}
             className='absolute w-6/12 lg:w-3/12 md:w-4/12 sm:w-4/12 animate-fade-up animate-once animate-duration-[1500ms] animate-delay-[50ms] animate-ease-in-out' 
             style={{ 
               top: '42.5%',
@@ -150,7 +150,7 @@ function App() {
             />
           </div>
           <div
-            hidden={!isCoverTxtVisible}
+            hidden={!isCoverTxtVisible && !isP2Load}
             className='absolute w-4/12 lg:w-2/12 md:w-3/12 sm:w-3/12 animate-fade-up animate-once animate-duration-[1500ms] animate-delay-[250ms] animate-ease-in-out' 
             style={{ 
               top: '40%',
@@ -170,7 +170,7 @@ function App() {
             />
           </div>
           <div
-            hidden={!isCoverTxtVisible}
+            hidden={!isCoverTxtVisible && !isP3Load}
             className='absolute w-6/12 lg:w-3/12 md:w-4/12 sm:w-4/12 animate-fade-up animate-once animate-duration-[1500ms] animate-delay-[500ms] animate-ease-in-out' 
             style={{ 
               top: '53%',
