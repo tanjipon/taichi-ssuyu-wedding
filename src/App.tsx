@@ -240,7 +240,7 @@ function App() {
                 onLoad={() => setIsChiSingLoad(true)}
               />
             </div>
-            <div className='flex flex-col text-4xl lg:text-5xl md:text-4xl sm:text-3xl mt-4 animate-fade-right animate-once animate-duration-[1500ms] animate-ease-in-out' style={{ fontFamily: 'chenyuluoyan-mono', color: '#3D464E' }}>
+            <div hidden={!isTaichiSingleVisible || !isChiSingLoad} className='flex flex-col text-4xl lg:text-5xl md:text-4xl sm:text-3xl mt-4 animate-fade-right animate-once animate-duration-[1500ms] animate-ease-in-out' style={{ fontFamily: 'chenyuluoyan-mono', color: '#3D464E' }}>
               <div>新郎 彭泰淇</div>
             </div>
           </div>
@@ -261,7 +261,7 @@ function App() {
                 onLoad={() => setIsYuSingLoad(true)}
               />
             </div>
-            <div className='flex flex-col text-4xl lg:text-5xl md:text-4xl sm:text-3xl mt-4 animate-fade-left animate-once animate-duration-[1500ms] animate-ease-in-out' style={{ fontFamily: 'chenyuluoyan-mono', color: '#3D464E' }}>
+            <div hidden={!isSsuYuSingleVisible || !isYuSingLoad} className='flex flex-col text-4xl lg:text-5xl md:text-4xl sm:text-3xl mt-4 animate-fade-left animate-once animate-duration-[1500ms] animate-ease-in-out' style={{ fontFamily: 'chenyuluoyan-mono', color: '#3D464E' }}>
               <div>新娘 游思愉</div>
             </div>
           </div>
