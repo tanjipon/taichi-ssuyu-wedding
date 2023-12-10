@@ -130,7 +130,7 @@ function App() {
       <Parallax className='bg-no-repeat bg-center bg-cover' ref={parallax} pages={8} style={{ top: '0', left: '0', backgroundImage: `url(${bgImg})` }}>
         <ParallaxLayer className='relative' offset={0} speed={0}>
           <div
-            hidden={!isCoverTxtVisible && !isP1Load}
+            hidden={!isCoverTxtVisible || !isP1Load}
             className='absolute w-6/12 lg:w-3/12 md:w-4/12 sm:w-4/12 animate-fade-up animate-once animate-duration-[1500ms] animate-delay-[50ms] animate-ease-in-out' 
             style={{ 
               top: '42.5%',
@@ -150,7 +150,7 @@ function App() {
             />
           </div>
           <div
-            hidden={!isCoverTxtVisible && !isP2Load}
+            hidden={!isCoverTxtVisible || !isP2Load}
             className='absolute w-4/12 lg:w-2/12 md:w-3/12 sm:w-3/12 animate-fade-up animate-once animate-duration-[1500ms] animate-delay-[250ms] animate-ease-in-out' 
             style={{ 
               top: '40%',
@@ -170,7 +170,7 @@ function App() {
             />
           </div>
           <div
-            hidden={!isCoverTxtVisible && !isP3Load}
+            hidden={!isCoverTxtVisible || !isP3Load}
             className='absolute w-6/12 lg:w-3/12 md:w-4/12 sm:w-4/12 animate-fade-up animate-once animate-duration-[1500ms] animate-delay-[500ms] animate-ease-in-out' 
             style={{ 
               top: '53%',
@@ -260,11 +260,11 @@ function App() {
           </div>
         </ParallaxLayer>
         <ParallaxLayer className='flex flex-col justify-center items-center' offset={4} speed={0.2}>
-          <div style={{ fontSize: '4em', fontFamily: 'chenyuluoyan-mono', color: '#3D464E', fontWeight: 'bolder' }}>
+          <div style={{ fontSize: '3em', fontFamily: 'chenyuluoyan-mono', color: '#3D464E', fontWeight: 'bolder' }}>
             <p>婚宴資訊</p>
           </div>
           <div className='mt-12 flex flex-row justify-center items-center'>
-            <div className='flex flex-col justify-center items-center mr-3'>
+            <div className='flex flex-col justify-center items-center mr-2'>
               <div className='mt-3 text-4xl lg:text-5xl md:text-5xl sm:text-5xl' style={{ fontFamily: 'chenyuluoyan-mono', color: '#3D464E' }}>
                 新郎家長
               </div>
@@ -272,7 +272,7 @@ function App() {
                 彭文良 賴儀娟
               </div>
             </div>
-            <div className='flex flex-col justify-center items-center ml-'>
+            <div className='flex flex-col justify-center items-center ml-2'>
               <div className='mt-3 text-4xl lg:text-5xl md:text-5xl sm:text-5xl' style={{ fontFamily: 'chenyuluoyan-mono', color: '#3D464E' }}>
                 新娘家長
               </div>
