@@ -42,6 +42,8 @@ function App() {
   const [isP1Load, setIsP1Load] = useState(false);
   const [isP2Load, setIsP2Load] = useState(false);
   const [isP3Load, setIsP3Load] = useState(false);
+  const [isChiSingLoad, setIsChiSingLoad] = useState(false);
+  const [isYuSingLoad, setIsYuSingLoad] = useState(false);
 
   const audioPlayer = useRef<HTMLAudioElement>(null); 
   const [isAudioPlaying, setIsAudioPlaying] = useState(false);
@@ -222,41 +224,46 @@ function App() {
           </div>
         </ParallaxLayer>
         <ParallaxLayer className='flex flex-col justify-center items-center' offset={2} speed={0.2}>
-        <div ref={taichiSingleRef} className='w-full h-full flex flex-col justify-center items-center'>
-          {
-            isTaichiSingleVisible? 
-            <>
-              <div 
-                className='w-10/12 lg:w-3/12 md:w-5/12 sm:w-5/12 animate-fade-left animate-once animate-duration-[1500ms] animate-ease-in-out' 
-              >
-                <img className='w-full p-1 rounded shadow-xl' style={{ filter: 'drop-shadow(0 4px 3px rgb(0 0 0 / 0.07)) drop-shadow(0 2px 2px rgb(0 0 0 / 0.06))', backgroundColor: '#FFFAFA' }} src={taichiSingle} />
-              </div>
-              <div className='flex flex-col text-4xl lg:text-5xl md:text-4xl sm:text-3xl mt-4 animate-fade-right animate-once animate-duration-[1500ms] animate-ease-in-out' style={{ fontFamily: 'chenyuluoyan-mono', color: '#3D464E' }}>
-                <div>新郎 彭泰淇</div>
-              </div>
-            </>
-            :
-            <></>
-          }
+          <div ref={taichiSingleRef} className='w-full h-full flex flex-col justify-center items-center'>
+            <div
+              hidden={!isTaichiSingleVisible || !isChiSingLoad} 
+              className='w-10/12 lg:w-3/12 md:w-5/12 sm:w-5/12 animate-fade-left animate-once animate-duration-[1500ms] animate-ease-in-out' 
+            >
+              <img 
+                hidden={!isChiSingLoad} 
+                className='w-full p-1 rounded shadow-xl' 
+                style={{ 
+                  filter: 'drop-shadow(0 4px 3px rgb(0 0 0 / 0.07)) drop-shadow(0 2px 2px rgb(0 0 0 / 0.06))', 
+                  backgroundColor: '#FFFAFA' 
+                }} 
+                src={taichiSingle} 
+                onLoad={() => setIsChiSingLoad(true)}
+              />
+            </div>
+            <div className='flex flex-col text-4xl lg:text-5xl md:text-4xl sm:text-3xl mt-4 animate-fade-right animate-once animate-duration-[1500ms] animate-ease-in-out' style={{ fontFamily: 'chenyuluoyan-mono', color: '#3D464E' }}>
+              <div>新郎 彭泰淇</div>
+            </div>
           </div>
         </ParallaxLayer>
         <ParallaxLayer className='flex flex-col justify-center items-center' offset={3} speed={0.2}>
           <div ref={ssuyuSingleRef} className='w-full h-full flex flex-col justify-center items-center'>
-            {
-              isSsuYuSingleVisible?
-              <>
-                <div 
-                  className='w-10/12 lg:w-3/12 md:w-5/12 sm:w-5/12 animate-fade-right animate-once animate-duration-[1500ms] animate-ease-in-out'
-                >
-                  <img className='w-full p-1 rounded shadow-xl' style={{ filter: 'drop-shadow(0 4px 3px rgb(0 0 0 / 0.07)) drop-shadow(0 2px 2px rgb(0 0 0 / 0.06))', backgroundColor: '#FFFAFA' }} src={ssuyuSingle} />
-                </div>
-                <div className='flex flex-col text-4xl lg:text-5xl md:text-4xl sm:text-3xl mt-4 animate-fade-left animate-once animate-duration-[1500ms] animate-ease-in-out' style={{ fontFamily: 'chenyuluoyan-mono', color: '#3D464E' }}>
-                  <div>新娘 游思愉</div>
-                </div>
-              </>
-              :
-              <></>
-            }
+            <div
+              hidden={!isSsuYuSingleVisible || !isYuSingLoad} 
+              className='w-10/12 lg:w-3/12 md:w-5/12 sm:w-5/12 animate-fade-right animate-once animate-duration-[1500ms] animate-ease-in-out'
+            >
+              <img 
+                className='w-full p-1 rounded shadow-xl' 
+                style={{ 
+                  filter: 'drop-shadow(0 4px 3px rgb(0 0 0 / 0.07)) drop-shadow(0 2px 2px rgb(0 0 0 / 0.06))', 
+                  backgroundColor: '#FFFAFA' 
+                }} 
+                src={ssuyuSingle} 
+                onLoad={() => setIsYuSingLoad(true)}
+              />
+            </div>
+            <div className='flex flex-col text-4xl lg:text-5xl md:text-4xl sm:text-3xl mt-4 animate-fade-left animate-once animate-duration-[1500ms] animate-ease-in-out' style={{ fontFamily: 'chenyuluoyan-mono', color: '#3D464E' }}>
+              <div>新娘 游思愉</div>
+            </div>
           </div>
         </ParallaxLayer>
         <ParallaxLayer className='flex flex-col justify-center items-center' offset={4} speed={0.2}>
