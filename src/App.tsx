@@ -71,7 +71,7 @@ function App() {
     if (isLetterVisible){
       return (
         <TypeAnimation
-          className='w-full h-full text-center text-xl lg:text-3xl md:text-xl sm:text-xl'
+          className='w-full h-full text-center text-xl lg:text-3xl md:text-2xl sm:text-2xl'
           sequence={[
             getLetterText(receiver),
           ]}
@@ -116,7 +116,7 @@ function App() {
     //   }
     // };
     if (audioPlayer.current){
-      audioPlayer.current.volume = 0.1;
+      audioPlayer.current.volume = 0.3;
     }
     // window.addEventListener('click', handleBgmPlay, {once: true});
     // window.addEventListener('touchstart', handleBgmPlay, {once: true});
