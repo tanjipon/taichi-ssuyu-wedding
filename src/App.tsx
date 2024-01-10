@@ -227,7 +227,7 @@ function App() {
           <div ref={taichiSingleRef} className='w-full h-full flex flex-col justify-center items-center'>
             <div
               hidden={!isTaichiSingleVisible || !isChiSingLoad} 
-              className='w-10/12 lg:w-3/12 md:w-5/12 sm:w-5/12 animate-fade-left animate-once animate-duration-[1500ms] animate-ease-in-out' 
+              className='w-10/12 lg:w-3/12 md:w-5/12 sm:w-5/12 animate-fade-left animate-once animate-duration-[1250ms] animate-ease-in-out' 
             >
               <img 
                 hidden={!isChiSingLoad} 
@@ -249,7 +249,7 @@ function App() {
           <div ref={ssuyuSingleRef} className='w-full h-full flex flex-col justify-center items-center'>
             <div
               hidden={!isSsuYuSingleVisible || !isYuSingLoad} 
-              className='w-10/12 lg:w-3/12 md:w-5/12 sm:w-5/12 animate-fade-right animate-once animate-duration-[1500ms] animate-ease-in-out'
+              className='w-10/12 lg:w-3/12 md:w-5/12 sm:w-5/12 animate-fade-right animate-once animate-duration-[1250ms] animate-ease-in-out'
             >
               <img 
                 className='w-full p-1 rounded shadow-xl' 
